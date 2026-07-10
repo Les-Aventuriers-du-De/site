@@ -1,0 +1,41 @@
+---
+import FooterCard from "../FooterCard.astro";
+import { isEnabled } from "../../config/features";
+import { Config } from "../../Config";
+---
+
+<FooterCard>
+  <h2>Navigation</h2>
+  <ul>
+    {
+      isEnabled("pages", "blog") && (
+        <li>
+          <a href="/blog">Actualités</a>
+        </li>
+      )
+    }
+    {
+      isEnabled("pages", "events") && (
+        <li>
+          <a href="/événements">Événements</a>
+        </li>
+      )
+    }
+    {
+      isEnabled("pages", "games") && (
+        <li>
+          <a href="/ludothèque">Ludothèque</a>
+        </li>
+      )
+    }
+    <li><a href="/contact">Contact</a></li>
+  </ul>
+</FooterCard>
+
+<style lang="scss">
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+</style>

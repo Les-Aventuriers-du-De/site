@@ -1,0 +1,23 @@
+---
+import { Config } from "../../Config";
+import { isEnabled } from "../../config/features";
+import Menu from "../Menu.astro";
+import MenuItem from "../MenuItem.astro";
+---
+
+<Menu id="main-menu" slot="menu">
+  <MenuItem href="/" current>Accueil</MenuItem>{
+    isEnabled("pages", "blog") && <MenuItem href="/blog">Actualités</MenuItem>
+  }
+  {
+    isEnabled("pages", "events") && (
+      <MenuItem href="/événements">Événements</MenuItem>
+    )
+  }
+  {
+    isEnabled("pages", "games") && (
+      <MenuItem href="/ludothèque">Ludothèque</MenuItem>
+    )
+  }
+  <MenuItem href="/contact">Contact</MenuItem>
+</Menu>

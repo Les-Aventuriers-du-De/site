@@ -1,0 +1,10 @@
+---
+type Props = {
+  wide?: boolean;
+};
+const { wide = false } = Astro.props;
+---
+
+<div class:list={["footer__card", wide ? "footer__card--wide" : undefined]}>
+  <slot />
+</div>

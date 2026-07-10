@@ -1,0 +1,77 @@
+@mixin headings() {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--heading-default-grey-main);
+    font-weight: 900;
+    line-height: 1.2;
+    margin-top: 0;
+    letter-spacing: -0.02em;
+  }
+
+  h2 {
+    color: var(--heading-default-orange-meeple);
+    font-size: 2rem;
+  }
+
+  h3 {
+    color: var(--heading-default-purple-d20);
+    font-size: 1.5rem;
+  }
+}
+
+@mixin paragraphs() {
+  p {
+    margin-bottom: 0.5rem;
+  }
+}
+
+@mixin inlines() {
+  address {
+    font-style: normal;
+  }
+
+  a {
+    color: inherit;
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  // Icône de lien externe uniquement sur les vrais liens http(s)
+  a[href^="http"]:not([href*="les-aventuriers-du-de.github.io"])::after {
+    background: currentColor;
+    content: "";
+    display: inline-block;
+    height: 1rem;
+    margin-left: 0.25em;
+    mask-size: contain;
+    mask: url("../node_modules/remixicon/icons/System/external-link-line.svg");
+    vertical-align: -2px;
+    width: 1rem;
+    -webkit-mask: url("../node_modules/remixicon/icons/System/external-link-line.svg");
+    -webkit-mask-size: contain;
+  }
+
+  a[href^="mailto:"]::before {
+    background: currentColor;
+    content: "";
+    display: inline-block;
+    height: 1rem;
+    margin-right: 0.25em;
+    mask-size: contain;
+    mask: url("../node_modules/remixicon/icons/Business/mail-send-line.svg");
+    vertical-align: -2px;
+    width: 1rem;
+    -webkit-mask: url("../node_modules/remixicon/icons/Business/mail-send-line.svg");
+    -webkit-mask-size: contain;
+  }
+
+}

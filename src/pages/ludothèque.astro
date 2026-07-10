@@ -1,0 +1,13 @@
+---
+import Section from "../components/Section.astro";
+import { Config } from "../Config";
+import DefaultLayout from "../layouts/Default.astro";
+
+const title = "Ludothèque";
+---
+
+<DefaultLayout siteTitle={Config.site.title} pageTitle={title}>
+  <Section>
+    <p>Cette page est en cours de construction.</p>
+  </Section>
+</DefaultLayout>

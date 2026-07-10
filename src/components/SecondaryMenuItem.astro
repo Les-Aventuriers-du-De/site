@@ -1,0 +1,36 @@
+---
+const { href, current } = Astro.props;
+---
+
+<li class="menu__item">
+  <a {href} aria-current={current ? "page" : undefined}>
+    <slot />
+  </a>
+</li>
+
+<style lang="scss">
+  .menu__item {
+    cursor: pointer;
+    display: inline-block;
+    margin: 0;
+    padding: 0.125rem 0;
+
+    &:has(+ .menu__item) {
+      &::after {
+        content: "•";
+        display: inline-block;
+        margin: 0 0.5rem;
+      }
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    &:hover {
+      a {
+        text-decoration: underline;
+      }
+    }
+  }
+</style>

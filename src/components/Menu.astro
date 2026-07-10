@@ -1,0 +1,32 @@
+---
+type Props = {
+  id?: string;
+  horizontal?: boolean;
+};
+const { id, horizontal = false } = Astro.props;
+// TODO size sm to reduce padding?
+---
+
+<menu class:list={["menu", horizontal ? "menu--horizontal" : undefined]} {id}>
+  <slot />
+</menu>
+
+<style lang="scss">
+  @use "../responsive" as *;
+
+  .menu {
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    @include from(md) {
+      flex-flow: row nowrap;
+    }
+  }
+  .menu--horizontal {
+    display: flex;
+    flex-flow: row wrap;
+  }
+</style>

@@ -1,0 +1,129 @@
+---
+import Address from "../components/_/Address.astro";
+import Email from "../components/_/Email.astro";
+import Footer from "../components/Footer.astro";
+import FooterCard from "../components/FooterCard.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import Link from "../components/Link.astro";
+import MainMenu from "../components/_/MainMenu.astro";
+import PlanFooterCard from "../components/_/PlanFooterCard.astro";
+import SecondaryMenu from "../components/SecondaryMenu.astro";
+import SecondaryMenuItem from "../components/SecondaryMenuItem.astro";
+import SkipLink from "../components/SkipLink.astro";
+import SkipLinks from "../components/SkipLinks.astro";
+import { Config } from "../Config";
+import BaseLayout from "./Base.astro";
+import ToggleTheme from "../components/ToggleTheme.astro";
+
+type Props = {
+  lang?: "fr";
+  siteTitle?: string;
+  siteTagline?: string;
+  pageTitle: string;
+  pageDescription?: string;
+  pageIllustrationUrl?: string;
+};
+const {
+  lang = "fr",
+  siteTitle = Config.site.title,
+  siteTagline = Config.site.tagline,
+  pageTitle,
+  pageDescription,
+  pageIllustrationUrl,
+} = Astro.props;
+---
+
+<BaseLayout {lang} {siteTitle} {pageTitle}>
+  <slot name="skip-links">
+    <SkipLinks>
+      <SkipLink href="#content">Aller au contenu</SkipLink>
+      <SkipLink href="#main-menu">Aller au menu principal</SkipLink>
+      <SkipLink href="#footer">Aller au pied de page</SkipLink>
+    </SkipLinks>
+  </slot>
+  <slot name="header">
+    <Header>
+      <Fragment slot="title">{siteTitle}</Fragment>
+      <Fragment slot="tagline">{siteTagline}</Fragment>
+      <Fragment slot="main-tools">
+        <slot name="main-tools" />
+      </Fragment>
+      <Fragment slot="secondary-tools">
+        <ToggleTheme />
+        <slot name="secondary-menu" />
+      </Fragment>
+      <Fragment slot="before-menu">
+        <slot name="before-menu" />
+      </Fragment>
+      <Fragment slot="after-menu">
+        <slot name="after-menu" />
+      </Fragment>
+      <slot name="main-menu" slot="menu">
+        <MainMenu />
+      </slot>
+    </Header>
+  </slot>
+  <main id="content" transition:animate="slide">
+    <slot name="hero">
+      <Hero mode="banner" illustrationUrl={pageIllustrationUrl}>
+        <Fragment slot="title">{pageTitle}</Fragment>
+        <Fragment slot="description">
+          <slot name="description">
+            {pageDescription}
+          </slot>
+        </Fragment>
+        <Fragment slot="illustration">
+          <slot name="illustration" />
+        </Fragment>
+      </Hero>
+    </slot>
+    <slot />
+  </main>
+  <slot name="footer">
+    <Footer>
+      <FooterCard wide>
+        <h2>Les Aventuriers du Dé</h2>
+        <p>Association loi 1901 dédiée aux jeux de société.</p>
+      </FooterCard>
+      <PlanFooterCard />
+      <FooterCard>
+        <h2>Contact</h2>
+        <Email />
+        <Address />
+        <p>
+          <Link href="/contact" appearance="button"
+            >Formulaire de contact</Link
+          >
+        </p>
+      </FooterCard>
+      <slot name="copyight" slot="copyright">
+        <p>
+          &copy; {new Date().getFullYear()} Les Aventuriers du Dé. Tous droits réservés.
+        </p>
+      </slot>
+      <slot name="ternary-menu" slot="menu">
+        <SecondaryMenu>
+          <SecondaryMenuItem href="/à-propos"
+            >À propos</SecondaryMenuItem
+          >
+          <SecondaryMenuItem href="/mentions-légales">
+            Mentions légales
+          </SecondaryMenuItem>
+          <SecondaryMenuItem href="/confidentialité">
+            Confidentialité
+          </SecondaryMenuItem>
+          <SecondaryMenuItem href="/accessibilité">
+            Accessibilité
+          </SecondaryMenuItem>
+          <SecondaryMenuItem href="/statuts">
+            Statuts
+          </SecondaryMenuItem>
+          <SecondaryMenuItem href="/règlement-intérieur">
+            Règlement intérieur
+          </SecondaryMenuItem>
+        </SecondaryMenu>
+      </slot>
+    </Footer>
+  </slot>
+</BaseLayout>

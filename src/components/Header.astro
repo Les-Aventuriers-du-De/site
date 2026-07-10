@@ -1,0 +1,65 @@
+---
+import Link from "./Link.astro";
+---
+
+<header class="header" id="header" transition:name="header">
+  <div class="header__content">
+    <div class="header__brand">
+      <Link href="/">
+        <div class="header__logo">
+          <slot name="logo">
+            <img
+              src="/logo.webp"
+              alt="Logo"
+              width="128"
+              height="128"
+            />
+          </slot>
+        </div>
+        <div class="header__title">
+          <p class="header__title-text">
+            <slot name="title" />
+          </p>
+          <p class="header__title-tagline">
+            <slot name="tagline" />
+          </p>
+        </div>
+      </Link>
+      <div class="header__tools">
+        <div class="header__main-tools">
+          <slot name="main-tools" />
+        </div>
+        <div class="header__secondary-tools">
+          <slot name="secondary-tools" />
+        </div>
+        <button
+          title="Menu"
+          id="main-menu-button"
+          popovertarget="main-menu"
+          command="show-modal"
+          commandfor="main-menu"
+          aria-controls="menu">Menu</button
+        >
+      </div>
+    </div>
+  </div>
+  <dialog class="header__floating-menu" id="main-menu">
+    <button
+      title="Fermer"
+      id="main-menu-close-button"
+      popovertarget="main-menu"
+      command="close"
+      commandfor="main-menu"
+    >
+      Fermer
+    </button>
+    <div class="header__floating-menu-tools">
+      <slot name="secondary-tools" />
+    </div>
+    <nav class="header__menu">
+      <slot name="before-menu" />
+      <slot name="menu" />
+      <slot name="after-menu" />
+    </nav>
+  </dialog>
+</header>

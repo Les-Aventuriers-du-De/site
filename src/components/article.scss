@@ -1,0 +1,50 @@
+@use "../layout" as *;
+@use "../responsive" as *;
+
+@mixin article() {
+  .article {
+    padding-inline: 1rem;
+    @include content-max-width();
+
+    &__content {
+
+      // padding-block: 1rem;
+      @include from(md) {
+        display: grid;
+        grid-template-columns: minmax(200px, 1fr) minmax(0, 3fr);
+      }
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin-block: 1.5rem 0.5rem;
+    }
+
+    p,
+    ul {
+      margin-block: 0.5rem 1rem;
+    }
+
+    p {
+      line-height: 1.25;
+
+      &:has(+ ul) {
+        margin-block-end: 0.5rem;
+      }
+    }
+
+  }
+
+  .article__toc {
+    position: sticky;
+    top: 86px; // Hauteur du header "non-réduit" en mobile
+
+    @supports (animation-timeline: scroll()) {
+      top: 72px; // Hauteur du header "réduit" en mobile
+    }
+  }
+}

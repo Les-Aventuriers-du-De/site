@@ -1,0 +1,29 @@
+---
+import { getCollection, render } from "astro:content";
+import Article from "../components/Article.astro";
+import { Config } from "../Config";
+import DefaultLayout from "../layouts/Default.astro";
+
+export async function getStaticPaths() {
+  const collection = await getCollection("pages");
+  if (!collection) throw new Error("Unknown 'pages' collection");
+  return collection.map((item) => {
+    return {
+      params: { page: item.data.slug },
+      props: { item },
+    };
+  });
+}
+
+const { item } = Astro.props;
+const { Content, headings } = await render(item as any);
+---
+
+<DefaultLayout
+  siteTitle={Config.site.title}
+  pageTitle={item.data.title as string}
+>
+  <Article {headings}>
+    <Content />
+  </Article>
+</DefaultLayout>

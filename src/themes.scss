@@ -1,0 +1,306 @@
+@mixin default-theme() {
+  :root {
+    --font-sans:
+      "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont,
+      "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+    // Palette neutre (gris) — 50 = très clair, 900 = très foncé
+    --color-neutral-50: #ffffff;
+    --color-neutral-100: #f7f6f4;
+    --color-neutral-200: #efede9;
+    --color-neutral-300: #e6e3de;
+    --color-neutral-400: #d6d2cc;
+    --color-neutral-500: #bfb9b1;
+    --color-neutral-600: #9f968e;
+    --color-neutral-700: #7f766e;
+    --color-neutral-800: #5f564e;
+    --color-neutral-900: #3f3730;
+
+    // Palette principale (inspirée DSFR mais distincte)
+    --color-primary-50: #f3f7fb;
+    --color-primary-100: #e6f0fb;
+    --color-primary-200: #cfe0f7;
+    --color-primary-300: #9fc3ef;
+    --color-primary-400: #6fa6e6;
+    --color-primary-500: #3f89dd; // token principal
+    --color-primary-600: #2f6fb0;
+    --color-primary-700: #235488;
+    --color-primary-800: #183a5f;
+    --color-primary-900: #0d2136;
+
+    // Accent chaud (pour CTA alternatifs)
+    --color-accent-50: #fff7f0;
+    --color-accent-100: #ffefe1;
+    --color-accent-200: #ffd7bf;
+    --color-accent-300: #ffb88a;
+    --color-accent-400: #ff9a55;
+    --color-accent-500: #ff7b20;
+    --color-accent-600: #cc6219;
+    --color-accent-700: #994816;
+    --color-accent-800: #66310f;
+    --color-accent-900: #331807;
+
+    // Tokens sémantiques (numérotés)
+    --color-info-500: var(--color-primary-500);
+    --color-success-500: #0b8457;
+    --color-warning-500: #d97706;
+    --color-danger-500: #b91c1c;
+
+    // Ombres
+    --shadow-glow-orange: 0 8px 24px rgba(234, 88, 12, 0.15);
+    --shadow-glow-purple: 0 8px 24px rgba(112, 26, 117, 0.15);
+
+    // Arrondis
+    --radius-md: 4px; // Standard
+    --radius-lg: 6px;
+    --transition-premium: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+    // Mise en page
+    --container-width: 1200px;
+    --toc-width: 240px;
+    --aside-max-width: 320px;
+    --aside-min-width: 240px;
+
+    // Apparition de la quick bar (voir QuickAccessBar.astro) : repli "toujours visible"
+    // pour les navigateurs sans support des scroll-driven animations.
+    --quickbar-progress: 1;
+  }
+}
+
+@mixin theme-light() {
+  :root[data-theme="light"] {
+    color-scheme: light;
+
+    // Couleurs Royales & Organiques du Logo
+    --color-meeple-orange: #ea580c; // Orange vif — accent principal (mode clair)
+    --color-meeple-light: #fff7ed; // Nuance orange ultra-douce pour les fonds
+    --color-d20-purple: #7c3f8c; // Violet velours premium (D20)
+    --color-d20-light: #fdf4ff; // Violet doux pour fond alternatif
+    --color-hat-brown: #3b1a03; // Marron d'explorateur
+    --color-accent-brown: var(--color-hat-brown);
+    --color-offwhite: #f7f3ec; // Blanc cassé, moins agressif que #fff sur fond sombre
+
+    // Base Thématique — Mode clair (gris neutre, moins bleuté)
+    // Fond légèrement grisé (plutôt que quasi blanc) pour réduire l'écart de
+    // luminosité avec le texte, tout en restant largement au-dessus du seuil AA.
+    --color-bg-main: #e9e7e2;
+    --color-bg-card: #ffffff;
+    --color-bg-header: #ffffff;
+    --color-text-main: #4b4842; // Gris chaud pour la lisibilité
+    --color-text-muted: #6b6862; // Gris chaud atténué
+    --color-border-soft: #ddd9d2; // Bordure invisible ou ultra-douce
+    --color-heading: var(--color-hat-brown);
+    --color-success: #059669; // Vert émeraude pour les validations
+    --color-hero-bg: #0f172a; // Fond sombre de la bannière (constant, indépendant du thème)
+
+    // Ombres fluides (crée un effet de relief physique des cartes de jeu sur la table)
+    --shadow-sm: 0 2px 8px rgba(59, 26, 3, 0.03);
+    --shadow-md:
+      0 10px 20px -5px rgba(59, 26, 3, 0.06),
+      0 4px 10px -3px rgba(59, 26, 3, 0.04);
+    --shadow-lg: 0 25px 50px -12px rgba(59, 26, 3, 0.12);
+
+    /* ---------- BACKGROUND ---------- */
+    --background-default-grey: var(--neutral-950);
+
+    --background-alt-grey: var(--neutral-975);
+    --background-alt-grey-hover: var(--neutral-950);
+    --background-alt-grey-active: var(--neutral-925);
+
+    --background-alt-blue-clue: var(--blue-clue-900);
+
+    --background-action-orange-meeple-main: var(--orange-meeple-500);
+    --background-action-orange-meeple-hover: var(--orange-meeple-400);
+    --background-action-orange-meeple-active: var(--orange-meeple-350);
+    --background-action-orange-meeple-disabled: var(--neutral-875);
+
+    --background-action-purple-d20-main: var(--purple-d20-500);
+    --background-action-purple-d20-hover: var(--purple-d20-400);
+    --background-action-purple-d20-active: var(--purple-d20-350);
+    --background-action-purple-d20-disabled: var(--neutral-875);
+
+    --background-action-grey-flat: var(--neutral-1000);
+    --background-action-grey-flat-hover: var(--neutral-950);
+    --background-action-grey-flat-active: var(--neutral-925);
+    --background-action-grey-elevated: var(--neutral-1000);
+
+    --background-info-low: var(--blue-clue-950);
+    --background-info-high: var(--blue-clue-400);
+    --background-success-low: var(--green-dragon-950);
+    --background-success-high: var(--green-dragon-400);
+    --background-warning-low: var(--yellow-joker-950);
+    --background-warning-high: var(--yellow-joker-400);
+    --background-error-low: var(--red-heart-950);
+    --background-error-high: var(--red-heart-400);
+
+    /* ---------- BORDER ---------- */
+    --border-default-grey-main: var(--neutral-850);
+    --border-default-grey-hover: var(--neutral-750);
+    --border-default-grey-active: var(--neutral-650);
+    --border-default-grey-disabled: var(--neutral-925);
+
+    --border-action-orange-meeple-main: var(--orange-meeple-500);
+    --border-action-orange-meeple-hover: var(--orange-meeple-400);
+    --border-action-orange-meeple-active: var(--orange-meeple-350);
+    --border-action-orange-meeple-disabled: var(--neutral-875);
+
+    --border-action-purple-d20-main: var(--purple-d20-500);
+    --border-action-purple-d20-hover: var(--purple-d20-400);
+    --border-action-purple-d20-active: var(--purple-d20-350);
+    --border-action-purple-d20-disabled: var(--neutral-875);
+
+    --border-info-main: var(--blue-clue-400);
+    --border-success-main: var(--green-dragon-400);
+    --border-warning-main: var(--yellow-joker-400);
+    --border-error-main: var(--red-heart-400);
+
+    /* ---------- TEXT ---------- */
+    --text-default-grey-main: var(--neutral-75);
+    --text-default-grey-active: var(--neutral-0);
+    --text-default-grey-disabled: var(--neutral-750);
+
+    --text-alt-grey-main: var(--neutral-300);
+
+    --text-action-orange-meeple-main: var(--orange-meeple-350);
+    --text-action-orange-meeple-hover: var(--orange-meeple-300);
+    --text-action-orange-meeple-active: var(--orange-meeple-250);
+    --text-action-orange-meeple-disabled: var(--neutral-750);
+
+    --text-action-purple-d20-main: var(--purple-d20-350);
+    --text-action-purple-d20-hover: var(--purple-d20-300);
+    --text-action-purple-d20-active: var(--purple-d20-250);
+    --text-action-purple-d20-disabled: var(--neutral-750);
+
+    --text-action-grey-inverted: var(--neutral-1000);
+    --text-accent-brown-hat: var(--brown-hat-200);
+    --text-accent-purple-d20: var(--purple-d20-300);
+
+    --text-info-main: var(--blue-clue-350);
+    --text-success-main: var(--green-dragon-350);
+    --text-warning-main: var(--yellow-joker-350);
+    --text-error-main: var(--red-heart-350);
+
+    /* ---------- HEADING (variante de text) ---------- */
+    --heading-default-grey-main: var(--neutral-0);
+    --heading-alt-grey-main: var(--neutral-125);
+    --heading-default-orange-meeple: var(--orange-meeple-350);
+    --heading-default-purple-d20: var(--purple-d20-250);
+  }
+}
+
+@mixin theme-dark() {
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+
+    // Couleurs Royales & Organiques du Logo adoucies pour ne pas agresser sur fond sombre
+    --color-meeple-orange: #c9764a;
+    --color-meeple-light: #2e2420;
+    --color-d20-purple: #b083c2;
+    --color-d20-light: #2a2130;
+    --color-hat-brown: #39200b;
+    --color-accent-brown: #caa47c;
+    --color-offwhite: #eae6df;
+
+    // Gris neutre chaud (anthracite), plus de bleu marine
+    --color-bg-main: #202126; // #1a1816;
+    --color-bg-card: #242220;
+    --color-bg-header: #211f1c;
+    // Texte assombri (moins de contraste brut) : reste largement au-dessus du seuil AA
+    --color-text-main: #b7b2a7;
+    --color-text-muted: #8f897e;
+    --color-border-soft: #322f2b;
+    --color-heading: var(--color-offwhite);
+    --color-hero-bg: #030418;
+
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+    --shadow-md:
+      0 10px 20px -5px rgba(0, 0, 0, 0.4), 0 4px 10px -3px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.55);
+
+    /* ---------- BACKGROUND ---------- */
+    --background-default-grey: var(--neutral-50);
+
+    --background-alt-grey: var(--neutral-25);
+    --background-alt-grey-hover: var(--neutral-50);
+    --background-alt-grey-active: var(--neutral-75);
+
+    --background-alt-blue-clue: var(--blue-clue-100); // 75?
+
+    --background-action-orange-meeple-main: var(--orange-meeple-500);
+    --background-action-orange-meeple-hover: var(--orange-meeple-600);
+    --background-action-orange-meeple-active: var(--orange-meeple-650);
+    --background-action-orange-meeple-disabled: var(--neutral-125);
+
+    --background-action-purple-d20-main: var(--purple-d20-500);
+    --background-action-purple-d20-hover: var(--purple-d20-600);
+    --background-action-purple-d20-active: var(--purple-d20-650);
+    --background-action-purple-d20-disabled: var(--neutral-125);
+
+    --background-action-grey-flat: var(--neutral-0);
+    --background-action-grey-flat-hover: var(--neutral-50);
+    --background-action-grey-flat-active: var(--neutral-75);
+    --background-action-grey-elevated: var(--neutral-75);
+
+    --background-info-low: var(--blue-clue-50);
+    --background-info-high: var(--blue-clue-500);
+    --background-success-low: var(--green-dragon-50);
+    --background-success-high: var(--green-dragon-500);
+    --background-warning-low: var(--yellow-joker-50);
+    --background-warning-high: var(--yellow-joker-500);
+    --background-error-low: var(--red-heart-50);
+    --background-error-high: var(--red-heart-500);
+
+    /* ---------- BORDER ---------- */
+    --border-default-grey-main: var(--neutral-150);
+    --border-default-grey-hover: var(--neutral-250);
+    --border-default-grey-active: var(--neutral-350);
+    --border-default-grey-disabled: var(--neutral-75);
+
+    --border-action-orange-meeple-main: var(--orange-meeple-500);
+    --border-action-orange-meeple-hover: var(--orange-meeple-600);
+    --border-action-orange-meeple-active: var(--orange-meeple-650);
+    --border-action-orange-meeple-disabled: var(--neutral-125);
+
+    --border-action-purple-d20-main: var(--purple-d20-500);
+    --border-action-purple-d20-hover: var(--purple-d20-600);
+    --border-action-purple-d20-active: var(--purple-d20-650);
+    --border-action-purple-d20-disabled: var(--neutral-125);
+
+    --border-info-main: var(--blue-clue-500);
+    --border-success-main: var(--green-dragon-500);
+    --border-warning-main: var(--yellow-joker-500);
+    --border-error-main: var(--red-heart-500);
+
+    /* ---------- TEXT ---------- */
+    --text-default-grey-main: var(--neutral-925);
+    --text-default-grey-active: var(--neutral-1000);
+    --text-default-grey-disabled: var(--neutral-250);
+
+    --text-alt-grey-main: var(--neutral-700);
+
+    --text-action-orange-meeple-main: var(--orange-meeple-650);
+    --text-action-orange-meeple-hover: var(--orange-meeple-700);
+    --text-action-orange-meeple-active: var(--orange-meeple-750);
+    --text-action-orange-meeple-disabled: var(--neutral-250);
+
+    --text-action-purple-d20-main: var(--purple-d20-650);
+    --text-action-purple-d20-hover: var(--purple-d20-700);
+    --text-action-purple-d20-active: var(--purple-d20-750);
+    --text-action-purple-d20-disabled: var(--neutral-250);
+
+    --text-action-grey-inverted: var(--neutral-0);
+    --text-accent-brown-hat: var(--brown-hat-700);
+    --text-accent-purple-d20: var(--purple-d20-600);
+
+    --text-info-main: var(--blue-clue-650);
+    --text-success-main: var(--green-dragon-650);
+    --text-warning-main: var(--yellow-joker-650);
+    --text-error-main: var(--red-heart-650);
+
+    /* ---------- HEADING (variante de text) ---------- */
+    --heading-default-grey-main: var(--neutral-1000);
+    --heading-alt-grey-main: var(--neutral-900);
+    --heading-default-orange-meeple: var(--orange-meeple-700);
+    --heading-default-purple-d20: var(--purple-d20-700);
+  }
+}

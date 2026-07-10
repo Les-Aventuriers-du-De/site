@@ -1,17 +1,39 @@
 ---
+import Section from "../components/Section.astro";
+import Presentation from "../components/_/Presentation.astro";
+import DefaultLayout from "../layouts/Default.astro";
+import JoinUs from "../components/_/JoinUs.astro";
+import Agenda from "../components/_/Agenda.astro";
+import { Config } from "../Config";
 
+const page = "Accueil";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<DefaultLayout pageTitle={page} pageDescription="">
+  <!-- header -->
+  <p slot="description">
+    Association de jeux de société, jeux de cartes et jeux de rôles à Mérignac.
+    Rejoignez-nous, la première séance est offerte&nbsp;!
+  </p>
+  <img
+    slot="illustration"
+    src="robert-coelho-laNNTAth9vs-unsplash.webp"
+    alt=""
+    loading="eager"
+    data-credit-author="Robert Coelho"
+    data-credit-source="Unsplash"
+    data-credit-license="Unsplash License"
+    data-credit-url="https://unsplash.com/fr/@robert_coelho?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
+  />
+  <!-- <Link href="/login" slot="secondary-menu">Se connecter</Link> -->
+
+  <Section>
+    <!-- Left column -->
+    <Presentation />
+    <JoinUs />
+    <!-- Right column -->
+    <Fragment slot="aside">
+      <Agenda />
+    </Fragment>
+  </Section>
+</DefaultLayout>

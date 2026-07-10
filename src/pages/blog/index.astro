@@ -1,0 +1,16 @@
+---
+import Section from "../../components/Section.astro";
+import { Config } from "../../Config";
+import DefaultLayout from "../../layouts/Default.astro";
+
+const title = "Actualités";
+---
+
+<DefaultLayout siteTitle={Config.site.title} pageTitle={title}>
+  <Fragment slot="description">
+    Retrouvez ici les dernières actualités de l'association et du monde du jeu de société.
+  </Fragment>
+  <Section>
+    <p>Cette page est en cours de construction.</p>
+  </Section>
+</DefaultLayout>

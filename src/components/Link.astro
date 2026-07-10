@@ -1,0 +1,12 @@
+---
+type Props = {
+  appearance?: "button" | "link";
+  href: string;
+};
+const { appearance = "link", href } = Astro.props;
+const buttonClass = appearance === "button" ? "btn" : undefined;
+---
+
+<a {href} class:list={[buttonClass]}>
+  <slot />
+</a>

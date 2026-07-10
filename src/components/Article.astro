@@ -1,0 +1,25 @@
+---
+import TableOfContents from "./TableOfContents.astro";
+
+type Props = {
+  headings?: { depth: number; slug: string; text: string }[];
+};
+const { headings = [] } = Astro.props;
+const hasToc = headings && headings.length > 0;
+---
+
+<article class="article">
+  <div class="article__content">
+    {
+      hasToc && (
+        <aside class="article__toc" aria-label="Sommaire">
+          <TableOfContents headings={headings} />
+          {Astro.slots.has("toc-extra") && <slot name="toc-extra" />}
+        </aside>
+      )
+    }
+    <div class="article__content-inner">
+      <slot />
+    </div>
+  </div>
+</article>

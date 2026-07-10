@@ -1,0 +1,39 @@
+---
+import { creditFor } from "../../utils";
+import Card from "../Card.astro";
+import Link from "../Link.astro";
+---
+
+<Card id="rejoindre">
+  <Fragment slot="tags">Entraide et accueil</Fragment>
+  <Fragment slot="title">Rejoins-nous&nbsp;!</Fragment>
+  <Fragment slot="illustration">
+    <img
+      src="/christopher-paul-high-fwRMK19zavc-unsplash.webp"
+      alt="Composants et tuiles en bois posés sur une table de jeu de société"
+      loading="lazy"
+      data-credit-author={creditFor("rejoindre")?.author}
+      data-credit-source={creditFor("rejoindre")?.source}
+      data-credit-url={creditFor("rejoindre")?.sourceUrl}
+      data-credit-license={creditFor("rejoindre")?.license}
+    />
+  </Fragment>
+  <p>
+    Tu es curieux, débutant ou joueur confirmé&nbsp;? Tout le monde est bienvenu
+    chez Les Aventuriers du Dé&nbsp;! Viens simplement avec l'envie de
+    jouer&nbsp;: on s'occupe du reste&nbsp;; entre choix des jeux, explication
+    des règles et présentation par nos membres.
+  </p>
+  <p>
+    Nos séances ont lieu le dernier dimanche de chaque mois à Mérignac (33700).
+    Pour les non-adhérents, chaque séance est accessible moyennant un droit
+    d'entrée.
+  </p>
+  <p>
+    <strong>Une question&nbsp;?</strong> Écris-nous via notre <Link
+      href="/contact"
+    >
+      formulaire de contact
+    </Link>, ou passe directement lors d'une prochaine séance&nbsp;!
+  </p>
+</Card>

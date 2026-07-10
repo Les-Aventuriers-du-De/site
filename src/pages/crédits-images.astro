@@ -1,0 +1,54 @@
+---
+import Section from "../components/Section.astro";
+import DefaultLayout from "../layouts/Default.astro";
+const site = "Les Aventuriers du Dé";
+const page = "Crédits des illustrations";
+---
+
+<DefaultLayout siteTitle={site} pageTitle={page} pageDescription="">
+  <Fragment slot="description">
+    Sources et auteurs des photographies utilisées sur le site.
+  </Fragment>
+  <Section>
+    <p>
+      Cette page recense l'origine des photographies utilisées sur le site. Ces
+      informations sont également présentes directement dans le code de chaque
+      image (attributs data-credit-*), sans être visibles à l'écran ni annoncées
+      par un lecteur d'écran.
+    </p>
+  </Section>
+  <Section>
+    <p>
+      Page d'accueil&nbsp;: Photo de
+      <a
+        href="https://unsplash.com/fr/@robert_coelho?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
+      >
+        Robert Coelho
+      </a>
+      sur
+      <a
+        href="https://unsplash.com/fr/photos/six-des-de-couleurs-assorties-laNNTAth9vs?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
+      >
+        Unsplash
+      </a>
+    </p>
+  </Section>
+  <Section>
+    Photo de <a
+      href="https://unsplash.com/fr/@christopherphigh?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
+      >Christopher Paul High</a
+    >sur <a
+      href="https://unsplash.com/fr/photos/blocs-lego-jaunes-rouges-et-bleus-fwRMK19zavc?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
+      >Unsplash</a
+    >
+  </Section>
+  <Section>
+    Photo de <a
+      href="https://unsplash.com/fr/@karthikb351?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
+      >Karthik Balakrishnan</a
+    >sur <a
+      href="https://unsplash.com/fr/photos/personne-en-chemise-blanche-assise-a-cote-dune-table-avec-un-jeu-de-puzzle-NrS53eUKgiE?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
+      >Unsplash</a
+    >
+  </Section>
+</DefaultLayout>

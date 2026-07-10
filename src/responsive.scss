@@ -1,0 +1,25 @@
+@use "sass:map";
+@use "sass:meta";
+
+// Déclaration unique des points de rupture de l'écran
+$breakpoints: (
+  "sm": (min-width: 481px),
+  "md": (min-width: 769px),
+  "lg": (min-width: 961px),
+  "xl": (min-width: 1201px),
+  "xxl": (min-width: 1441px),
+) !default;
+
+// Unification de la logique de mixin pour éviter la surcharge invalide en Sass
+@mixin from($breakpoint-name) {
+  @if map.has-key($breakpoints, $breakpoint-name) {
+    @media only screen and #{meta.inspect(map.get($breakpoints, $breakpoint-name))} {
+      @content;
+    }
+  } @else {
+    // Permet d'utiliser également des valeurs brutes de pixels (ex: @include from(1024px))
+    @media only screen and (min-width: $breakpoint-name) {
+      @content;
+    }
+  }
+}

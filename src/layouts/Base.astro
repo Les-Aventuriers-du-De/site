@@ -1,0 +1,43 @@
+---
+// src/layouts/Base.astro
+import "../styles.scss";
+
+import { Config } from "../Config";
+import { ClientRouter } from "astro:transitions";
+
+type Props = {
+  lang: "fr";
+  siteTitle: string;
+  pageTitle: string;
+};
+const { lang = "fr", siteTitle, pageTitle } = Astro.props;
+---
+
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <base href="/" />
+    <meta name="canonical" content={`${Astro.site}${Astro.url.pathname.replace(/^\/+|\/+$/g, "")}`} />
+    <title>{pageTitle} | {siteTitle}</title>
+    <ClientRouter />
+    <script is:inline>
+      const applyTheme = () => {
+        const mode = localStorage.getItem("theme") ?? "system";
+        document.documentElement.dataset.theme =
+          mode === "system"
+            ? window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light"
+            : mode;
+      };
+      applyTheme();
+      document.addEventListener("astro:page-load", applyTheme);
+    </script>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

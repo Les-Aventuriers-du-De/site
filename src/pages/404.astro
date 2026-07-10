@@ -1,0 +1,21 @@
+---
+import Link from "../components/Link.astro";
+import Section from "../components/Section.astro";
+import { Config } from "../Config";
+import DefaultLayout from "../layouts/Default.astro";
+
+const title = "Page introuvable";
+---
+
+<DefaultLayout siteTitle={Config.site.title} pageTitle={title}>
+  <Fragment slot="description">
+    La page demandée n'existe pas ou plus.
+  </Fragment>
+  <Section>
+    <p>Oups&nbsp;! Ton lancer de dé t'a emmené hors du plateau.</p>
+    <p>
+      Tu peux retourner à the <Link href="/">case de départ</Link> ou consulter le menu de
+      navigation pour trouver ce que tu cherches.
+    </p>
+  </Section>
+</DefaultLayout>

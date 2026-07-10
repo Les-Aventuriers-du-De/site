@@ -1,0 +1,15 @@
+@mixin tables() {
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  td,
+  th {
+    border: 1px solid var(--border-default-grey-main);
+  }
+
+  th:empty {
+    border: 0;
+  }
+}

@@ -1,0 +1,128 @@
+---
+// src/components/ToggleTheme.astro
+---
+
+<div class="theme-switcher">
+  <button data-theme-mode="light" aria-label="Mode clair">
+    <i class="ri-sun-line"></i>
+  </button>
+  <button data-theme-mode="system" aria-label="Mode système">
+    <i class="ri-computer-line"></i>
+  </button>
+  <button data-theme-mode="dark" aria-label="Mode sombre">
+    <i class="ri-moon-line"></i>
+  </button>
+  <span class="theme-switcher__indicator"></span>
+</div>
+
+<script>
+  import { type Theme, getTheme, setTheme } from "../scripts/theme";
+  const initThemeSwitcher = () => {
+    const switcher = document.querySelector<HTMLElement>(".theme-switcher");
+    if (!switcher) throw new Error("Theme switcher not found");
+    const buttons = switcher.querySelectorAll<HTMLButtonElement>("button");
+    const updateUI = () => {
+      const theme = getTheme();
+      switcher.dataset.theme = theme;
+      buttons.forEach((button) => {
+        button.setAttribute(
+          "aria-pressed",
+          String(button.dataset.themeMode === theme),
+        );
+      });
+    };
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        console.log("click");
+        const theme = button.dataset.themeMode as Theme;
+        setTheme(theme);
+        updateUI();
+      });
+    });
+
+    updateUI();
+  };
+  initThemeSwitcher();
+  document.addEventListener("astro:page-load", initThemeSwitcher);
+</script>
+
+<style>
+  .theme-switcher {
+    --size: 1.75rem;
+
+    position: relative;
+    display: inline-grid;
+    grid-template-columns: repeat(3, var(--size));
+    padding: 0.125rem;
+
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border-soft);
+    border-radius: 999px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .theme-switcher button {
+    position: relative;
+    z-index: 1;
+
+    width: var(--size);
+    height: var(--size);
+    padding: 0;
+
+    display: grid;
+    place-items: center;
+
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+
+    color: var(--color-text-muted);
+    cursor: pointer;
+
+    transition:
+      color 0.2s ease,
+      background-color 0.2s ease;
+  }
+
+  .theme-switcher button:hover {
+    color: var(--color-text-main);
+  }
+
+  .theme-switcher button[aria-pressed="true"] {
+    color: var(--color-heading);
+  }
+
+  .theme-switcher button i {
+    font-size: 0.95rem;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .theme-switcher__indicator {
+    position: absolute;
+    top: 0.125rem;
+    left: 0.125rem;
+
+    width: var(--size);
+    height: var(--size);
+
+    border-radius: 999px;
+    background: var(--color-bg-main);
+    border: 1px solid var(--color-border-soft);
+
+    transition: transform 0.2s ease;
+  }
+
+  .theme-switcher[data-theme="light"] .theme-switcher__indicator {
+    transform: translateX(0);
+  }
+
+  .theme-switcher[data-theme="system"] .theme-switcher__indicator {
+    transform: translateX(var(--size));
+  }
+
+  .theme-switcher[data-theme="dark"] .theme-switcher__indicator {
+    transform: translateX(calc(var(--size) * 2));
+  }
+</style>

@@ -1,0 +1,10 @@
+@mixin content-max-width($max-width: 82rem, $padding-inline: 1rem) {
+  &__content {
+    @include max-width($max-width, $padding-inline);
+  }
+}
+@mixin max-width($max-width: 82rem, $padding-inline: 1rem) {
+  padding-inline: $padding-inline;
+  margin-inline: auto;
+  max-width: $max-width;
+}

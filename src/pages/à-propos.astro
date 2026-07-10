@@ -1,0 +1,30 @@
+---
+import Section from "../components/Section.astro";
+import { Config } from "../Config";
+import DefaultLayout from "../layouts/Default.astro";
+
+const title = "À propos";
+---
+
+<DefaultLayout siteTitle={Config.site.title} pageTitle={title}>
+  <Section>
+    <h2>Notre histoire</h2>
+    <p>
+      Les Aventuriers Du Dé est une association loi 1901 fondée par des
+      passionné·e·s de jeux à Mérignac.
+    </p>
+    <h2>Notre mission</h2>
+    <p>
+      Promouvoir le jeu de société moderne comme vecteur de lien social, de
+      partage et de convivialité. Offrir un lieu d'accueil chaleureux où novices
+      et passionnés se rencontrent autour d'une passion commune.
+    </p>
+    <h2>Nos valeurs</h2>
+    <p>
+      Convivialité, entraide et ouverture à toutes et tous guident nos
+      séances&nbsp;! que l'on découvre le jeu de société pour la première fois
+      ou que l'on soit joueur·se aguerri·e, chacun·e trouve sa place autour de
+      la table.
+    </p>
+  </Section>
+</DefaultLayout>

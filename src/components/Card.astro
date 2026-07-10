@@ -1,0 +1,90 @@
+---
+type Props = {
+  compact?: boolean;
+  id: string;
+};
+const { id, compact = false } = Astro.props;
+---
+
+<section
+  class:list={["card", compact ? "card--compact" : ""]}
+  {id}
+  aria-labelledby={`card-title-${id}`}
+>
+  {
+    !compact && (
+      <picture class="card__illustration">
+        <slot name="illustration" />
+      </picture>
+    )
+  }
+  <div class="card__content">
+    <span class="card__tags">
+      <slot name="tags" />
+    </span>
+    <h2 class="card__title" id={`card-title-${id}`}>
+      <slot name="title" />
+    </h2>
+    <slot />
+  </div>
+</section>
+
+<style lang="scss">
+  @use "../responsive" as *;
+
+  .card {
+    background: var(--lightest); // var(--color-bg-card);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+  .card--compact {
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+  }
+  h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  h2:first-child {
+    margin-top: 0;
+  }
+  .card__illustration {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    img {
+      display: block;
+      border-radius: var(--radius-lg);
+    }
+  }
+  .card__tags {
+    display: block;
+    color: var(--text-accent-purple-d20);
+    font-weight: 800;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+  @include from(md) {
+    .card {
+      align-items: stretch;
+      flex-flow: row nowrap;
+    }
+    .card__illustration {
+      flex: 1;
+    }
+    .card__content {
+      flex: 1;
+    }
+    .card:nth-child(even) {
+      flex-flow: row-reverse nowrap;
+    }
+  }
+</style>

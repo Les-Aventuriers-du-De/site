@@ -1,0 +1,86 @@
+@use "./responsive" as *;
+
+@mixin forms() {
+  .form-intro {
+    color: var(--text-alt-grey-main);
+    margin-bottom: 1rem;
+    line-height: 1.25;
+  }
+
+  .form-group {
+    border-left: 2px solid transparent;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.75rem 0 0.75rem 0.5rem;
+
+    label {
+      font-weight: 600;
+      color: var(--text-default-grey-main);
+    }
+  }
+
+  .form-group:has(:user-invalid) {
+    border-left-color: var(--red-heart-400);
+  }
+
+  .form-row {
+    display: grid;
+    gap: 0 1rem;
+
+    @include from(md) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @include from(md) {
+    .form-row:has(:user-invalid) {
+      border-left: 2px solid var(--red-heart-400);
+      padding-left: 0.5rem;
+    }
+
+    .form-row:has(:user-invalid) .form-group {
+      border-left: none;
+      padding-left: 0;
+    }
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-default-grey-main);
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.3s ease;
+
+    &:focus {
+      outline: none;
+      border-color: var(--border-action-orange-meeple-main);
+    }
+
+    &:user-invalid {
+      border-color: var(--red-heart-400);
+    }
+  }
+
+
+  .field-error {
+    display: none;
+    margin: 0;
+    color: var(--red-heart-400);
+    font-size: 0.875rem;
+    line-height: 1.25;
+  }
+
+
+  .form-group:has(:user-invalid) .field-error {
+    display: block;
+  }
+
+
+  .form-group textarea {
+    resize: vertical;
+  }
+}

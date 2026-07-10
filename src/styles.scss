@@ -1,0 +1,92 @@
+// styles.scss
+@use "remixicon/fonts/remixicon" as *;
+
+@use "normalize-scss/sass/normalize" as *;
+@use "./responsive" as *;
+
+@use "./colors" as colors;
+@use "./themes" as themes;
+
+@use "./typo" as typo;
+@use "./layout" as *;
+@use "./tables" as *;
+@use "./forms" as *;
+
+@use "./components" as components;
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+html,
+body,
+dialog,
+[popover] {
+  background-color: var(--background-default-grey);
+  box-sizing: border-box;
+  color: var(--text-default-grey-main);
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: var(--background-default-grey);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--purple-d20-light) transparent;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  min-height: 100dvh;
+}
+
+main {
+  flex: 1;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+@include colors.default();
+@include colors.light();
+@include colors.dark();
+
+@include themes.default-theme();
+@include themes.theme-light();
+@include themes.theme-dark();
+
+@include typo.headings();
+@include typo.paragraphs();
+@include typo.inlines();
+
+@include tables();
+@include forms();
+
+@include components.header();
+@include components.footer();
+@include components.article();
+
+
+#content>.hero .hero,
+#content>.section .section {
+  @include content-max-width();
+}

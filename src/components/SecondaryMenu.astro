@@ -1,0 +1,21 @@
+---
+type Props = {
+  id?: string;
+};
+const { id } = Astro.props;
+---
+
+<menu class="menu" {id}>
+  <slot />
+</menu>
+
+<style lang="scss">
+  .menu {
+    align-items: stretch;
+    display: flex;
+    flex-flow: row wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+</style>

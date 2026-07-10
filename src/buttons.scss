@@ -1,0 +1,28 @@
+@mixin buttons() {
+
+  button,
+  .btn {
+    background-color: var(--background-action-orange-meeple-main);
+    border: none;
+    border-radius: var(--radius-md);
+    color: var(--text-action-grey-inverted);
+    cursor: pointer;
+    line-height: 2.5;
+    padding: 0.5rem 1rem;
+    transition: var(--transition-premium);
+
+    &:hover {
+      background-color: var(--background-action-orange-meeple-hover);
+    }
+
+    &:active {
+      background-color: var(--background-action-orange-meeple-active);
+    }
+
+    &:disabled {
+      background-color: var(--background-action-orange-meeple-disabled);
+      cursor: not-allowed;
+    }
+  }
+
+}
