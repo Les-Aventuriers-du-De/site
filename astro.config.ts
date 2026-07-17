@@ -1,15 +1,18 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
-import { satteri } from '@astrojs/markdown-satteri';
-import cssnano from 'cssnano';
-import autoprefixer from 'autoprefixer';
+import { satteri } from "@astrojs/markdown-satteri";
+import sitemap from "@astrojs/sitemap";
+import { defineConfig } from "astro/config";
+import autoprefixer from "autoprefixer";
+import cssnano from "cssnano";
 
 // https://astro.build/config
 export default defineConfig({
-  site: import.meta.env.PROD ? "https://les-aventuriers-du-de.github.io" : undefined,
+  site: import.meta.env.PROD
+    ? "https://les-aventuriers-du-de.github.io"
+    : "http://localhost:4321",
   compressHTML: true,
   markdown: {
-    syntaxHighlight: 'prism',
+    syntaxHighlight: "prism",
     processor: satteri({
       features: {
         gfm: true,
@@ -21,6 +24,16 @@ export default defineConfig({
       },
     }),
   },
+  integrations: [
+    sitemap({
+      filter: (page) =>
+        ["/drafts", "/admin"].every((path) => !page.includes(path)),
+      i18n: {
+        defaultLocale: "fr",
+        locales: { fr: "Français" },
+      },
+    }),
+  ],
   scopedStyleStrategy: "where",
   // security: {
   //   csp: {
@@ -45,7 +58,7 @@ export default defineConfig({
   // },
   vite: {
     build: {
-      minify: false
+      minify: false,
     },
     css: {
       transformer: "postcss",
@@ -57,6 +70,6 @@ export default defineConfig({
           }),
         ],
       },
-    }
+    },
   },
 });
