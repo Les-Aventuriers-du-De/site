@@ -8,12 +8,7 @@ import Link from "./Link.astro";
       <Link href="/">
         <div class="header__logo">
           <slot name="logo">
-            <img
-              src="/logo.webp"
-              alt="Logo"
-              width="128"
-              height="128"
-            />
+            <img src="/logo.webp" alt="Logo" width="128" height="128" />
           </slot>
         </div>
         <div class="header__title">
@@ -33,23 +28,24 @@ import Link from "./Link.astro";
           <slot name="secondary-tools" />
         </div>
         <button
-          title="Menu"
           id="main-menu-button"
-          popovertarget="main-menu"
+          popovertarget="main-menu-dialog"
           command="show-modal"
-          commandfor="main-menu"
-          aria-controls="menu">Menu</button
+          commandfor="main-menu-dialog"
+          aria-label="Ouvrir le menu principal"
+          aria-controls="main-menu-dialog"
+          aria-expanded="false">Menu</button
         >
       </div>
     </div>
   </div>
-  <dialog class="header__floating-menu" id="main-menu">
+  <dialog class="header__floating-menu" id="main-menu-dialog" aria-open="false">
     <button
-      title="Fermer"
+      aria-label="Fermer le menu principal"
       id="main-menu-close-button"
-      popovertarget="main-menu"
+      popovertarget="main-menu-dialog"
       command="close"
-      commandfor="main-menu"
+      commandfor="main-menu-dialog"
     >
       Fermer
     </button>

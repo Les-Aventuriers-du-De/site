@@ -1,24 +1,27 @@
 ---
-import Section from "../components/Section.astro";
-import Presentation from "../components/_/Presentation.astro";
-import DefaultLayout from "../layouts/Default.astro";
-import JoinUs from "../components/_/JoinUs.astro";
 import Agenda from "../components/_/Agenda.astro";
-import { Config } from "../Config";
+import JoinUs from "../components/_/JoinUs.astro";
+import Presentation from "../components/_/Presentation.astro";
+import Section from "../components/Section.astro";
+import DefaultLayout from "../layouts/Default.astro";
 
-const page = "Accueil";
+const page = "L'association";
+const description =
+  "Les Aventuriers du Dé est une association de jeux de société, jeux de cartes " +
+  "et jeux de rôle à Mérignac. Venez découvrir nos soirées ludiques.";
 ---
 
-<DefaultLayout pageTitle={page} pageDescription="">
+<DefaultLayout pageTitle={page} pageDescription={description}>
   <!-- header -->
   <p slot="description">
     Association de jeux de société, jeux de cartes et jeux de rôles à Mérignac.
-    Rejoignez-nous, la première séance est offerte&nbsp;!
+    Rejoignez-nous&nbsp;!
+    <!-- Rejoignez-nous, la première séance est offerte&nbsp;! -->
   </p>
   <img
     slot="illustration"
     src="robert-coelho-laNNTAth9vs-unsplash.webp"
-    alt=""
+    alt="Dés colorés et pions en bois disposés sur un plateau de jeu de société illustré"
     loading="eager"
     data-credit-author="Robert Coelho"
     data-credit-source="Unsplash"

@@ -1,20 +1,20 @@
 ---
 import Address from "../components/_/Address.astro";
 import Email from "../components/_/Email.astro";
+import MainMenu from "../components/_/MainMenu.astro";
+import PlanFooterCard from "../components/_/PlanFooterCard.astro";
 import Footer from "../components/Footer.astro";
 import FooterCard from "../components/FooterCard.astro";
 import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
 import Link from "../components/Link.astro";
-import MainMenu from "../components/_/MainMenu.astro";
-import PlanFooterCard from "../components/_/PlanFooterCard.astro";
 import SecondaryMenu from "../components/SecondaryMenu.astro";
 import SecondaryMenuItem from "../components/SecondaryMenuItem.astro";
 import SkipLink from "../components/SkipLink.astro";
 import SkipLinks from "../components/SkipLinks.astro";
+import ToggleTheme from "../components/ToggleTheme.astro";
 import { Config } from "../Config";
 import BaseLayout from "./Base.astro";
-import ToggleTheme from "../components/ToggleTheme.astro";
 
 type Props = {
   lang?: "fr";
@@ -34,7 +34,25 @@ const {
 } = Astro.props;
 ---
 
-<BaseLayout {lang} {siteTitle} {pageTitle}>
+<BaseLayout {lang} {siteTitle} {pageTitle} {pageDescription}>
+  <slot slot="head" name="head" />
+  <script slot="head" type="application/ld+json" is:inline>
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Les Aventuriers du Dé",
+      "url": "https://les-aventuriers-du-de.github.io/",
+      "email": "les-aventuriers-du-de@outlook.fr",
+      "description": "Association loi 1901 de jeux de société, jeux de cartes et jeux de rôles à Mérignac.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "25 rue Paul Langevin",
+        "postalCode": "33700",
+        "addressLocality": "Mérignac",
+        "addressCountry": "FR"
+      }
+    }
+  </script>
   <slot name="skip-links">
     <SkipLinks>
       <SkipLink href="#content">Aller au contenu</SkipLink>
@@ -92,9 +110,7 @@ const {
         <Email />
         <Address />
         <p>
-          <Link href="/contact" appearance="button"
-            >Formulaire de contact</Link
-          >
+          <Link href="/contact" appearance="button">Formulaire de contact</Link>
         </p>
       </FooterCard>
       <slot name="copyight" slot="copyright">
@@ -104,9 +120,7 @@ const {
       </slot>
       <slot name="ternary-menu" slot="menu">
         <SecondaryMenu>
-          <SecondaryMenuItem href="/à-propos"
-            >À propos</SecondaryMenuItem
-          >
+          <SecondaryMenuItem href="/à-propos">À propos</SecondaryMenuItem>
           <SecondaryMenuItem href="/mentions-légales">
             Mentions légales
           </SecondaryMenuItem>
@@ -116,9 +130,7 @@ const {
           <SecondaryMenuItem href="/accessibilité">
             Accessibilité
           </SecondaryMenuItem>
-          <SecondaryMenuItem href="/statuts">
-            Statuts
-          </SecondaryMenuItem>
+          <SecondaryMenuItem href="/statuts"> Statuts </SecondaryMenuItem>
           <SecondaryMenuItem href="/règlement-intérieur">
             Règlement intérieur
           </SecondaryMenuItem>
