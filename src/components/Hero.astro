@@ -4,9 +4,11 @@ type Props = {
   illustrationUrl?: string;
 };
 const { mode, illustrationUrl } = Astro.props;
+const illustrationElement = await Astro.slots.render("illustration");
 ---
 
-<section class:list={["hero", `hero--${mode}`]} transition:name="hero">
+<section class:list={["hero", `hero--${mode}`]} >
+  <!-- transition:name="hero" -->
   <div class="hero__content">
     {
       Astro.slots.top && (
@@ -33,76 +35,14 @@ const { mode, illustrationUrl } = Astro.props;
       )
     }
     {
-      (illustrationUrl || Astro.slots.illustration) && (
+      (illustrationUrl || illustrationElement.trim()) && (
         <picture class="hero__illustration">
-          <slot name="illustration">
-            {illustrationUrl && <img src={illustrationUrl} />}
-          </slot>
+          {/* <slot name="illustration"> */}
+            {illustrationUrl && <img src={illustrationUrl} alt="" />}
+            <Fragment set:html={illustrationElement}></Fragment>
+          {/* </slot> */}
         </picture>
       )
     }
   </div>
 </section>
-
-<style lang="scss">
-  @use "../responsive" as *;
-  .hero {
-    background:
-      radial-gradient( 
-        circle at 90% -10%,
-        rgb(from var(--orange-meeple-500) r g b / 0.125) 0%,
-        rgb(from var(--orange-meeple-500) r g b / 0) 60%
-      ),
-      radial-gradient(
-        circle at 20% 90%,
-        rgb(from var(--purple-d20-400) r g b / 0.225) 0%,
-        rgb(from var(--purple-d20-700) r g b / 0) 50%
-      ),
-      linear-gradient(
-        to bottom,
-        var(--background-info-low) 0%,
-        var(--background-info-low) 100%
-      );
-    padding: 1rem 0;
-    overflow: hidden;
-  }
-  .hero__title { 
-    font-size: 3rem;
-    line-height: 1;
-    margin: 0.5rem 0;
-  }
-  .hero__description {
-    font-size: 1.25rem;
-    line-height: 1.5;
-    margin: 0;
-  }
-  .hero__illustration {
-    display: none;
-  }
-  .hero--banner .hero__content {
-    align-items: center;
-    display: grid;
-    grid-auto-flow: column;
-    grid-template-columns: 1fr auto;
-    grid-template-rows: auto auto auto auto;
-    @include from(lg) {
-      gap: 0 2rem;
-    }
-    .hero__illustration:not(:empty) {
-      @include from(lg) {
-        align-self: flex-end;
-        border-bottom: 0;
-        border-radius: var(--radius-md) var(--radius-md) 0 0;
-        box-shadow: 0 2px 8px 2px rgba(234, 88, 12, 0.35);
-        display: flex;
-        grid-row: 1 / span 2;
-        margin-bottom: -1rem;
-        max-height: 180px;
-        max-width: 320px;
-      }
-    }
-  }
-  :global(p) {
-    margin: 0;
-  }
-</style>

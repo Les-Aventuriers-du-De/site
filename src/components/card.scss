@@ -1,0 +1,75 @@
+@use "../responsive" as *;
+
+.card {
+  background: var(--lightest); // var(--color-bg-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem;
+
+  &--compact {
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+  }
+
+  &__illustration {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    img {
+      display: block;
+      border-radius: var(--radius-lg);
+    }
+  }
+
+  &__title {
+    margin-block-end: 0.5rem;
+  }
+
+  &__tags {
+    display: block;
+    color: var(--text-accent-purple-d20);
+    font-weight: 800;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+
+    + &__title {
+      margin-block-start: 0.5rem;
+    }
+  }
+
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    @include from(md) {
+      font-size: 1.75rem;
+    }
+  }
+}
+
+@include from(md) {
+  .card {
+    align-items: stretch;
+    flex-flow: row nowrap;
+  }
+  .card__illustration {
+    flex: 1;
+  }
+  .card__content {
+    flex: 1;
+  }
+  .card:nth-child(even) {
+    flex-flow: row-reverse nowrap;
+  }
+}

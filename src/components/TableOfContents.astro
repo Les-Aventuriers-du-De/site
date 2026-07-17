@@ -1,5 +1,5 @@
 ---
-  type Props = {
+type Props = {
   headings: { depth: number; slug: string; text: string }[];
   maxDepth?: number;
 };
@@ -34,59 +34,3 @@ const items = headings.filter((h) => h.depth <= maxDepth);
     </menu>
   </div>
 </nav>
-
-<style lang="scss">
-  @use "../responsive" as *;
-  menu,
-  li {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  a {
-    text-decoration: none;
-  }
-  .toc {
-    position: sticky;
-    top: 142px; // Hauteur du header "non*réduit" en bureau
-
-    @supports (animation-timeline: scroll()) {
-      top: 100px; // Hauteur du header "réduit" en bureau
-    }
-  }
-  .toc__title {
-    background-color: var(--background-default-grey);
-    border-radius: 0;
-    border: 0;
-    border-bottom: 1px solid #313131;
-    border-top: 1px solid #313131;
-    font-size: 1.125rem;
-    height: 3rem;
-    line-height: 1;
-    margin: 0 -1rem;
-    padding: 0 1rem;
-    text-align: left;
-    width: calc(min(100%, 100dvw) + 2rem);
-    @include from(md) {
-      border: 0;
-      pointer-events: none;
-      .toc > & {
-        display: none;
-      }
-    }
-  }
-  .toc__content {
-    border: none;
-    height: 100%;
-    margin: 0;
-    max-height: 100%;
-    max-width: 100%;
-    padding: 0 1rem;
-    width: 100%;
-    @include from(md) {
-      display: block;
-      position: relative;
-      width: 100%;
-    }
-  }
-</style>

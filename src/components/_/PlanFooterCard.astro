@@ -1,11 +1,10 @@
 ---
 import FooterCard from "../FooterCard.astro";
 import { isEnabled } from "../../config/features";
-import { Config } from "../../Config";
 ---
 
 <FooterCard>
-  <h2>Navigation</h2>
+  <p><strong>Navigation</strong></p>
   <ul>
     {
       isEnabled("pages", "blog") && (
@@ -32,7 +31,7 @@ import { Config } from "../../Config";
   </ul>
 </FooterCard>
 
-<style lang="scss">
+<style>
   ul {
     margin: 0;
     padding: 0;

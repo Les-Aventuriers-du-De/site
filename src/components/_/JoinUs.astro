@@ -2,6 +2,8 @@
 import { creditFor } from "../../utils";
 import Card from "../Card.astro";
 import Link from "../Link.astro";
+
+const credits = creditFor("rejoindre");
 ---
 
 <Card id="rejoindre">
@@ -12,10 +14,10 @@ import Link from "../Link.astro";
       src="/christopher-paul-high-fwRMK19zavc-unsplash.webp"
       alt="Trois pions de jeu (Meeple) en bois rouge, bleu et jaune alignés sur un plateau de jeu de société"
       loading="lazy"
-      data-credit-author={creditFor("rejoindre")?.author}
-      data-credit-source={creditFor("rejoindre")?.source}
-      data-credit-url={creditFor("rejoindre")?.sourceUrl}
-      data-credit-license={creditFor("rejoindre")?.license}
+      data-credit-author={credits?.author}
+      data-credit-source={credits?.source}
+      data-credit-license={credits?.license}
+      data-credit-url={credits?.sourceUrl}
     />
   </Fragment>
   <p>

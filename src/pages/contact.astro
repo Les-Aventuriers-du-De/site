@@ -34,7 +34,9 @@ const title = "Contact";
               placeholder="Ton prénom"
               required
             />
-            <p class="field-error">Ton prénom nous permet de mieux te connaître.</p>
+            <p class="field-error">
+              Ton prénom nous permet de mieux te connaître.
+            </p>
           </div>
           <div class="form-group">
             <label for="last_name">Nom *</label>
@@ -56,7 +58,9 @@ const title = "Contact";
             placeholder="Ton adresse email"
             required
           />
-          <p class="field-error">Ton adresse email nous permet de te répondre.</p>
+          <p class="field-error">
+            Ton adresse email nous permet de te répondre.
+          </p>
         </div>
 
         <div class="form-group">
@@ -71,7 +75,12 @@ const title = "Contact";
 
         <div class="form-group">
           <label for="subject">Sujet *</label>
-          <select id="subject" name="subject" aria-placeholder="Sélectionnez un sujet" required>
+          <select
+            id="subject"
+            name="subject"
+            aria-placeholder="Sélectionnez un sujet"
+            required
+          >
             <option value="" selected disabled>Sélectionnez un sujet</option>
             <option value="info">Demande d'information</option>
             <option value="membership">Adhésion</option>
@@ -142,7 +151,7 @@ const title = "Contact";
   </Section>
 </DefaultLayout>
 
-<style lang="scss">
+<style>
   .contact-form .btn {
     width: 100%;
     padding: 1rem;

@@ -1,5 +1,11 @@
 ---
-const { href, current } = Astro.props;
+const { href } = Astro.props;
+
+const pathname = decodeURIComponent(Astro.url.pathname);
+const current =
+  href === "/"
+    ? pathname === "/"
+    : pathname === href || pathname.startsWith(`${href}/`);
 ---
 
 <li class="menu__item">
@@ -7,21 +13,3 @@ const { href, current } = Astro.props;
     <slot />
   </a>
 </li>
-
-<style lang="scss">
-  .menu__item {
-    cursor: pointer;
-    display: inline-block;
-    margin: 0;
-    padding: 0;
-
-    a {
-      padding: 1rem 0.75rem;
-      text-decoration: none;
-    }
-
-    &:hover {
-      background: rgba(0, 0, 0, 0.5);
-    }
-  }
-</style>

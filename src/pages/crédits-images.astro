@@ -1,11 +1,28 @@
 ---
+import { getCollection } from "astro:content";
 import Section from "../components/Section.astro";
 import DefaultLayout from "../layouts/Default.astro";
-const site = "Les Aventuriers du Dé";
+
 const page = "Crédits des illustrations";
+
+const allCredits = await getCollection("credits");
+const allCreditsGroupedByPage = allCredits.reduce(
+  (acc, credit) => {
+    const page = credit.data.page;
+    if (!acc[page]) {
+      acc[page] = [];
+    }
+    acc[page].push(credit);
+    return acc;
+  },
+  {} as Record<string, typeof allCredits>,
+);
 ---
 
-<DefaultLayout siteTitle={site} pageTitle={page} pageDescription="">
+<DefaultLayout
+  pageTitle={page}
+  pageDescription="Crédits des illustrations utilisées sur le site"
+>
   <Fragment slot="description">
     Sources et auteurs des photographies utilisées sur le site.
   </Fragment>
@@ -16,39 +33,27 @@ const page = "Crédits des illustrations";
       image (attributs data-credit-*), sans être visibles à l'écran ni annoncées
       par un lecteur d'écran.
     </p>
-  </Section>
-  <Section>
-    <p>
-      Page d'accueil&nbsp;: Photo de
-      <a
-        href="https://unsplash.com/fr/@robert_coelho?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
-      >
-        Robert Coelho
-      </a>
-      sur
-      <a
-        href="https://unsplash.com/fr/photos/six-des-de-couleurs-assorties-laNNTAth9vs?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
-      >
-        Unsplash
-      </a>
-    </p>
-  </Section>
-  <Section>
-    Photo de <a
-      href="https://unsplash.com/fr/@christopherphigh?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
-      >Christopher Paul High</a
-    >sur <a
-      href="https://unsplash.com/fr/photos/blocs-lego-jaunes-rouges-et-bleus-fwRMK19zavc?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
-      >Unsplash</a
-    >
-  </Section>
-  <Section>
-    Photo de <a
-      href="https://unsplash.com/fr/@karthikb351?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
-      >Karthik Balakrishnan</a
-    >sur <a
-      href="https://unsplash.com/fr/photos/personne-en-chemise-blanche-assise-a-cote-dune-table-avec-un-jeu-de-puzzle-NrS53eUKgiE?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
-      >Unsplash</a
-    >
+    {
+      Object.entries(allCreditsGroupedByPage).map(([page, creditsForPage]) => (
+        <section>
+          <h2>Page d'{page}&nbsp;</h2>
+          <ul>
+            {creditsForPage.map((credits) => (
+              <article>
+                <h3>
+                  Photo de&nbsp;:
+                  <a href={credits.data.authorUrl}>{credits.data.author}</a>
+                </h3>
+                <p>
+                  Source&nbsp;:
+                  <a href={credits.data.sourceUrl}>{credits.data.source}</a>•
+                  License&nbsp;: {credits.data.license}
+                </p>
+              </article>
+            ))}
+          </ul>
+        </section>
+      ))
+    }
   </Section>
 </DefaultLayout>

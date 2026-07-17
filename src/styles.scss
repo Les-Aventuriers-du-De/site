@@ -1,7 +1,8 @@
 // styles.scss
 @use "remixicon/fonts/remixicon" as *;
 
-@use "normalize-scss/sass/normalize" as *;
+// @use "normalize-scss/sass/normalize" as *;
+
 @use "./responsive" as *;
 
 @use "./colors" as colors;
@@ -13,6 +14,8 @@
 @use "./forms" as *;
 
 @use "./components" as components;
+
+@use "./transitions" as *;
 
 *,
 *::after,
@@ -85,8 +88,12 @@ img {
 @include components.footer();
 @include components.article();
 
-
-#content>.hero .hero,
-#content>.section .section {
+#contenu > .hero .hero,
+#contenu > .section .section {
   @include content-max-width();
+}
+
+[class*=" ri-"],
+[class^="ri-"] {
+  font-size: inherit;
 }

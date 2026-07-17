@@ -2,8 +2,6 @@
 // src/layouts/Base.astro
 import "../styles.scss";
 
-import { ClientRouter } from "astro:transitions";
-
 type Props = {
   lang: "fr";
   siteTitle: string;
@@ -27,7 +25,6 @@ const { lang = "fr", siteTitle, pageTitle, pageDescription } = Astro.props;
     <slot name="head" />
     <meta name="viewport" content="width=device-width" />
     <base href="/" />
-    <ClientRouter />
     <script is:inline>
       const applyTheme = () => {
         const mode = localStorage.getItem("theme") ?? "system";
@@ -40,6 +37,23 @@ const { lang = "fr", siteTitle, pageTitle, pageDescription } = Astro.props;
       };
       applyTheme();
       document.addEventListener("astro:page-load", applyTheme);
+    </script>
+    <script is:inline>
+      function updateViewTransitionTypes(event) {
+        if (!event.viewTransition) return;
+        const activation = navigation.activation;
+        if (activation?.navigationType === "traverse") {
+          const direction =
+            activation.entry.index < activation.from.index
+              ? "backwards"
+              : "forwards";
+          event.viewTransition.types.add(direction);
+        } else {
+          event.viewTransition.types.add("forwards");
+        }
+      }
+      window.addEventListener("pageswap", updateViewTransitionTypes);
+      window.addEventListener("pagereveal", updateViewTransitionTypes);
     </script>
   </head>
   <body>

@@ -2,7 +2,6 @@
 import Address from "../components/_/Address.astro";
 import Email from "../components/_/Email.astro";
 import MainMenu from "../components/_/MainMenu.astro";
-import PlanFooterCard from "../components/_/PlanFooterCard.astro";
 import Footer from "../components/Footer.astro";
 import FooterCard from "../components/FooterCard.astro";
 import Header from "../components/Header.astro";
@@ -55,9 +54,9 @@ const {
   </script>
   <slot name="skip-links">
     <SkipLinks>
-      <SkipLink href="#content">Aller au contenu</SkipLink>
-      <SkipLink href="#main-menu">Aller au menu principal</SkipLink>
-      <SkipLink href="#footer">Aller au pied de page</SkipLink>
+      <SkipLink href="#contenu">Aller au contenu</SkipLink>
+      <SkipLink href="#menu-principal">Aller au menu principal</SkipLink>
+      <SkipLink href="#pied-de-page">Aller au pied de page</SkipLink>
     </SkipLinks>
   </slot>
   <slot name="header">
@@ -82,7 +81,8 @@ const {
       </slot>
     </Header>
   </slot>
-  <main id="content" transition:animate="slide">
+  <main id="contenu">
+    <!-- transition:animate="slide" -->
     <slot name="hero">
       <Hero mode="banner" illustrationUrl={pageIllustrationUrl}>
         <Fragment slot="title">{pageTitle}</Fragment>
@@ -91,9 +91,7 @@ const {
             {pageDescription}
           </slot>
         </Fragment>
-        <Fragment slot="illustration">
-          <slot name="illustration" />
-        </Fragment>
+        <slot name="illustration" slot="illustration" />
       </Hero>
     </slot>
     <slot />
@@ -101,19 +99,19 @@ const {
   <slot name="footer">
     <Footer>
       <FooterCard wide>
-        <h2>Les Aventuriers du Dé</h2>
+        <p><strong>Les Aventuriers du Dé</strong></p>
         <p>Association loi 1901 dédiée aux jeux de société.</p>
       </FooterCard>
-      <PlanFooterCard />
+      <!-- <PlanFooterCard /> -->
       <FooterCard>
-        <h2>Contact</h2>
+        <p><strong>Contact</strong></p>
         <Email />
         <Address />
         <p>
           <Link href="/contact" appearance="button">Formulaire de contact</Link>
         </p>
       </FooterCard>
-      <slot name="copyight" slot="copyright">
+      <slot name="copyright" slot="copyright">
         <p>
           &copy; {new Date().getFullYear()} Les Aventuriers du Dé. Tous droits réservés.
         </p>

@@ -1,20 +1,18 @@
 ---
 import { creditFor } from "../../utils";
 import Card from "../Card.astro";
+import ImageWithCredits from "../ImageWithCredits.astro";
 ---
 
-<Card id="presentation">
+<Card id="présentation">
   <Fragment slot="tags">L'association</Fragment>
   <Fragment slot="title">Qui sommes-nous&nbsp;?</Fragment>
   <Fragment slot="illustration">
-    <img
+    <ImageWithCredits
       src="karthik-balakrishnan-NrS53eUKgiE-unsplash.webp"
       alt="Plateau de jeu de société représentant une carte, avec des pions multicolores, des cartes et des marqueurs disposés autour de la table"
       loading="lazy"
-      data-credit-author={creditFor("presentation")?.author}
-      data-credit-source={creditFor("presentation")?.source}
-      data-credit-url={creditFor("presentation")?.sourceUrl}
-      data-credit-license={creditFor("presentation")?.license}
+      creditsKey="présentation"
     />
   </Fragment>
   <p>

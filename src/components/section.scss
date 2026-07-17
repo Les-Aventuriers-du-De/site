@@ -1,0 +1,33 @@
+@use "../responsive" as *;
+.section {
+  margin-block: 2rem;
+}
+.section__content {
+  display: grid;
+  gap: 2rem;
+  grid-auto-flow: row;
+}
+.section__content-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.section__aside {
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
+  gap: 2rem;
+  @include from(lg) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+@include from(lg) {
+  .section__content {
+    &:has(.section__aside) {
+      grid-template-columns:
+        minmax(clamp(0px, calc(75% - 2rem), 936px), 3fr)
+        minmax(clamp(220px, calc(25% - 2rem), 312px), 1fr);
+    }
+  }
+}

@@ -1,0 +1,70 @@
+@use "../responsive" as *;
+
+.menu {
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  &--horizontal {
+    display: flex;
+    flex-flow: row wrap;
+  }
+
+  &__item {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+
+    &:has([aria-current="page"]) {
+      background: rgba(0, 0, 0, 0.5);
+      font-weight: bold;
+    }
+
+    a {
+      cursor: pointer;
+      padding: 1rem 0.75rem;
+      text-decoration: none;
+
+      &:hover {
+        background: rgba(0, 0, 0, 0.5);
+        text-decoration: none;
+      }
+    }
+  }
+
+  @include from(md) {
+    flex-flow: row nowrap;
+  }
+
+  &--secondary {
+    flex-flow: row wrap;
+
+    .menu__item {
+      padding: 0.125rem 0;
+
+      &:has(+ .menu__item) {
+        &::after {
+          content: "•";
+          display: inline-block;
+          margin: 0 0.5rem;
+        }
+      }
+
+      &:has([aria-current="page"]) {
+        background: none;
+      }
+
+      a {
+        padding: 1rem 0 0.75rem 0.25rem;
+
+        &:hover {
+          background: none;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

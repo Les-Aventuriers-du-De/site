@@ -1,0 +1,22 @@
+items:
+  accueil:
+    author: Robert Coelho
+    authorUrl: https://unsplash.com/fr/@robert_coelho?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
+    license: Unsplash
+    page: Accueil
+    source: Unsplash
+    sourceUrl: https://unsplash.com/fr/photos/six-des-de-couleurs-assorties-laNNTAth9vs?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
+  présentation:
+    author: Karthik Balakrishnan
+    authorUrl: https://unsplash.com/fr/@karthikb351?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
+    license: Unsplash
+    page: Accueil
+    source: Unsplash
+    sourceUrl: https://unsplash.com/fr/photos/personne-en-chemise-blanche-assise-a-cote-dune-table-avec-un-jeu-de-puzzle-NrS53eUKgiE?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
+  rejoindre:
+    author: Christopher Paul
+    authorUrl: https://unsplash.com/fr/@christopherphigh?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
+    license: Unsplash
+    page: Accueil
+    source: Unsplash
+    sourceUrl: https://unsplash.com/fr/photos/blocs-lego-jaunes-rouges-et-bleus-fwRMK19zavc?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText

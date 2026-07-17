@@ -36,7 +36,7 @@
       grid-template-columns: auto 1fr;
     }
 
-    >a {
+    > a {
       display: flex;
     }
   }
@@ -65,18 +65,26 @@
   }
 
   .header__title-text {
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: bold;
     gap: 0.5rem;
     line-height: 1;
     margin: var(--text-spacing);
+
+    @include from(md) {
+      font-size: 2rem;
+    }
   }
 
   .header__title-tagline {
-    font-size: 1rem;
+    font-size: 0.75rem;
     line-height: 1.5;
     margin: var(--text-spacing);
     text-transform: uppercase;
+
+    @include from(md) {
+      font-size: 1rem;
+    }
   }
 
   .header__tools {
@@ -136,7 +144,8 @@
   }
 
   #main-menu-button {
-    background: center / 24px 24px no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M3 6h18M3 12h18M3 18h18'/%3E%3C/svg%3E");
+    background: center / 24px 24px no-repeat
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M3 6h18M3 12h18M3 18h18'/%3E%3C/svg%3E");
     border: 0;
     color: transparent;
     cursor: pointer;
@@ -156,7 +165,7 @@
     }
   }
 
-  .header__menu .menu>.menu__item>a {
+  .header__menu .menu > .menu__item > a {
     display: inline-block;
   }
 
@@ -196,8 +205,14 @@
 
     @keyframes title-shrink {
       to {
-        font-size: 1.25rem;
-        line-height: 1.25rem;
+        font-size: 1rem;
+      }
+    }
+    @include from(md) {
+      @keyframes title-shrink {
+        to {
+          font-size: 1.25rem;
+        }
       }
     }
 
@@ -207,12 +222,18 @@
 
     @keyframes tagline-shrink {
       to {
-        font-size: 0.625rem;
-        line-height: 1rem;
+        font-size: 0.5rem;
+      }
+    }
+    @include from(md) {
+      @keyframes tagline-shrink {
+        to {
+          font-size: 0.625rem;
+        }
       }
     }
 
-    .header__menu .menu>.menu__item>a {
+    .header__menu .menu > .menu__item > a {
       @include transition(menu-shrink);
     }
 
@@ -225,8 +246,7 @@
 }
 
 @mixin transition($animation) {
-  transition:
-    padding 0.3s ease;
+  transition: padding 0.3s ease;
   animation: $animation linear both;
   animation-timeline: scroll();
   animation-range: 0 200px;

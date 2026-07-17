@@ -1,0 +1,22 @@
+---
+import { creditFor } from "../utils";
+
+type Props = {
+  src: string;
+  alt: string;
+  loading: "lazy" | "eager";
+  creditsKey: string;
+};
+const { src, alt, loading ="eager", creditsKey } = Astro.props;
+const credits = creditFor(creditsKey);
+---
+
+<img
+  {src}
+  {alt}
+  {loading}
+  data-credit-author={credits?.author}
+  data-credit-source={credits?.source}
+  data-credit-url={credits?.sourceUrl}
+  data-credit-license={credits?.license}
+/>

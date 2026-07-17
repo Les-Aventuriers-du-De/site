@@ -4,10 +4,9 @@ import Menu from "../Menu.astro";
 import MenuItem from "../MenuItem.astro";
 ---
 
-<Menu id="main-menu" slot="menu">
-  <MenuItem href="/" current>L'association</MenuItem>{
-    isEnabled("pages", "blog") && <MenuItem href="/blog">Actualités</MenuItem>
-  }
+<Menu id="menu-principal" slot="menu">
+  <MenuItem href="/">L'association</MenuItem>
+  {isEnabled("pages", "blog") && <MenuItem href="/blog">Actualités</MenuItem>}
   {
     isEnabled("pages", "events") && (
       <MenuItem href="/événements">Événements</MenuItem>

@@ -8,22 +8,3 @@ const { href } = Astro.props as Props;
 <a class="skip-link" {href}>
   <slot />
 </a>
-
-<style>
-  .skip-link {
-    background: var(--background-action-orange-meeple-main);
-    color: var(--black);
-    display: inline-block;
-    font-weight: bold;
-    left: 1rem;
-    padding: 0.25rem 1rem;
-    position: absolute;
-    transform: translateY(-100%);
-    transition: transform 0.2s ease;
-    white-space: nowrap;
-  }
-  .skip-link:focus {
-    position: static;
-    transform: translateY(0);
-  }
-</style>

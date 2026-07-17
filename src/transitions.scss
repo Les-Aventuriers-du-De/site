@@ -1,0 +1,88 @@
+@view-transition {
+  navigation: auto;
+}
+
+main {
+  view-transition-name: main;
+}
+
+:root:active-view-transition-type(forwards)::view-transition-old(main),
+::view-transition-old(main) {
+  animation: slide-out-leave 250ms ease both;
+}
+
+:root:active-view-transition-type(forwards)::view-transition-new(main),
+::view-transition-new(main) {
+  animation: slide-in-enter 250ms ease both;
+}
+
+:root:active-view-transition-type(backwards)::view-transition-old(main) {
+  animation: slide-out-enter 250ms ease both;
+}
+
+:root:active-view-transition-type(backwards)::view-transition-new(main) {
+  animation: slide-in-leave 250ms ease both;
+}
+
+::view-transition-old(main),
+::view-transition-new(main) {
+  animation-fill-mode: both;
+}
+
+::view-transition-group(main) {
+  overflow: hidden;
+}
+
+@keyframes slide-out-leave {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes slide-in-enter {
+  from {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes slide-out-enter {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes slide-in-leave {
+  from {
+    transform: translateX(-100%);
+  }
+}
+
+header {
+  view-transition-name: header;
+}
+
+footer {
+  view-transition-name: footer;
+}
+
+::view-transition-old(header),
+::view-transition-old(footer) {
+  animation: fade-out 200ms ease both;
+}
+
+::view-transition-new(header),
+::view-transition-new(footer) {
+  animation: fade-in 200ms ease both;
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}

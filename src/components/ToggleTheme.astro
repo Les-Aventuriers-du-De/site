@@ -34,7 +34,6 @@
 
     buttons.forEach((button) => {
       button.addEventListener("click", () => {
-        console.log("click");
         const theme = button.dataset.themeMode as Theme;
         setTheme(theme);
         updateUI();
@@ -60,32 +59,38 @@
     border: 1px solid var(--color-border-soft);
     border-radius: 999px;
     box-shadow: var(--shadow-sm);
+
+    button {
+      position: relative;
+      z-index: 1;
+
+      width: var(--size);
+      height: var(--size);
+      padding: 0;
+
+      display: grid;
+      place-items: center;
+
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+
+      color: var(--color-text-muted);
+      cursor: pointer;
+
+      transition:
+        color 0.2s ease,
+        background-color 0.2s ease;
+
+      i {
+        font-size: 0.95rem;
+        line-height: 1;
+        pointer-events: none;
+      }
+    }
   }
 
-  .theme-switcher button {
-    position: relative;
-    z-index: 1;
-
-    width: var(--size);
-    height: var(--size);
-    padding: 0;
-
-    display: grid;
-    place-items: center;
-
-    border: 0;
-    border-radius: 999px;
-    background: transparent;
-
-    color: var(--color-text-muted);
-    cursor: pointer;
-
-    transition:
-      color 0.2s ease,
-      background-color 0.2s ease;
-  }
-
-  .theme-switcher button:hover {
+  .theme-switcher .theme-switcher button:hover {
     color: var(--color-text-main);
   }
 
@@ -93,13 +98,7 @@
     color: var(--color-heading);
   }
 
-  .theme-switcher button i {
-    font-size: 0.95rem;
-    line-height: 1;
-    pointer-events: none;
-  }
-
-  .theme-switcher__indicator {
+  .theme-switcher button .theme-switcher__indicator {
     position: absolute;
     top: 0.125rem;
     left: 0.125rem;

@@ -34,7 +34,7 @@ export default defineConfig({
       },
     }),
   ],
-  scopedStyleStrategy: "where",
+  scopedStyleStrategy: "attribute",
   // security: {
   //   csp: {
   //     algorithm: 'SHA-384',
