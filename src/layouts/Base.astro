@@ -2,15 +2,15 @@
 // src/layouts/Base.astro
 import "../styles.scss";
 
-import { Config } from "../Config";
 import { ClientRouter } from "astro:transitions";
 
 type Props = {
   lang: "fr";
   siteTitle: string;
   pageTitle: string;
+  pageDescription?: string;
 };
-const { lang = "fr", siteTitle, pageTitle } = Astro.props;
+const { lang = "fr", siteTitle, pageTitle, pageDescription } = Astro.props;
 ---
 
 <html lang={lang}>
@@ -18,10 +18,15 @@ const { lang = "fr", siteTitle, pageTitle } = Astro.props;
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
+    <title>{pageTitle} | {siteTitle}</title>
+    {pageDescription && <meta name="description" content={pageDescription} />}
+    <meta
+      name="canonical"
+      content={`${Astro.site}${Astro.url.pathname.replace(/^\/+|\/+$/g, "")}`}
+    />
+    <slot name="head" />
     <meta name="viewport" content="width=device-width" />
     <base href="/" />
-    <meta name="canonical" content={`${Astro.site}${Astro.url.pathname.replace(/^\/+|\/+$/g, "")}`} />
-    <title>{pageTitle} | {siteTitle}</title>
     <ClientRouter />
     <script is:inline>
       const applyTheme = () => {
